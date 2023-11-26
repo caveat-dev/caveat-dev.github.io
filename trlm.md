@@ -1,6 +1,5 @@
 ---
 layout: page
-skin: "/assets/css/skins/light.css"
 ---
 
 <div style="text-align:center">
