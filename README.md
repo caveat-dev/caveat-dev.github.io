@@ -4,7 +4,7 @@ Source code for my website, https://caveatemptor.dev. Built using Jekyll and hos
 
 # contributing Pico-8 games
 
-The current proccess for this is sloppy.
+The current proccess for this is sloppy. To update a game, you would need to manually re-add it the repository. Nothing is automated.
 
 ## Step 1:
 Clone this repository. You will need to edit games.md as well as add the HTML and CSS files for your game.
@@ -35,4 +35,4 @@ Example:
 ```
 
 ## Step 4:
-Open a pull request!
+Open a pull request! (and maybe suggest a better way to do this)
