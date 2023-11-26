@@ -10,7 +10,7 @@ The current proccess for this is sloppy.
 Clone this repository. You will need to edit games.md as well as add the HTML and CSS files for your game.
 
 ## Step 2:
-Add the HTML and CSS files for your game into the "game_src" directory. The files should both be named "yourname_gamename", Ex: "caveat_box_push".
+Add the HTML and CSS files for your game into the "game_src" directory. The files should both be named "yourname_gamename", Ex: "caveat_box_push". <b>You must name these files correctly as you export them from Pico-8. Changing the names later breaks the carts.</b>
 
 ## Step 3:
 Add the following to the games.md page below the other embeds. "GAME NAME" is the name of your game, "YOU" is your name or username, "YOUR_REPO" is a link to the source code repository, and "FILE_NAME" is the name of the HTML file for the game.
