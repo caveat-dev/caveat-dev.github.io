@@ -16,4 +16,9 @@ layout: page
     <h3>By caveat</h3>
     <p><a href="https://codeberg.org/caveat/box_push" target="_blank">source</a></p>
     <iframe src="/game_src/caveat_box_push.html" height="1000" width="1000" title="Iframe Box Push"></iframe>
+    <hr>
+    <h2>Colors</h2>
+    <h3>By caveat</h3>
+    <p><a href="https://caveatemptor.dev/pages/games" target="_blank">source</a></p>
+    <iframe src="/game_src/colors.html" height="1000" width="1000" title="Iframe Colors"></iframe>
 </div>
