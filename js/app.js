@@ -1,7 +1,6 @@
 function navbar() {
   document.getElementById("navbar").innerHTML = "" +
     "<ul>\n" +
-    "  <li><a href='../index.html'>Home</a></li>" +
     "  <li><a href='../pages/about.html'>About</a></li>" +
     "  <li><a href='../pages/code.html'>Code</a></li>" +
     "  <li><a href='../pages/games.html'>Games</a></li>" +
