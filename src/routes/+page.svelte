@@ -13,20 +13,20 @@
         <p>Discord: <a href="https://discord.com/users/824400229645418497" target="_blank">caveat__</a></p>
         <hr>
     </div>
-    <div class="decsinc" style="text-align: center">
-        <a href="https://roxwize.xyz/ext/decsinc/prev.html?id=1"><h1>–</h1></a>
+    <div class="decsinc">
+        <a href="https://roxwize.xyz/ext/decsinc/prev.html?id=1"><h1>––</h1></a>
         <a href="https://roxwize.xyz/site/decsinc.html">
-            <img src="/decsinc_icon.png" alt="decsinc" width="50px"/>
+            <img src="/decsinc_icon.png" alt="decsinc" width="35px"/>
         </a>
-        <a href="https://roxwize.xyz/ext/decsinc/next.html?id=1"><h1>+</h1></a>
+        <a href="https://roxwize.xyz/ext/decsinc/next.html?id=1"><h1>++</h1></a>
     </div>
 </body>
 
 <style>
-    .decsinc > a {
-        display: inline-block;
-        background-repeat: no-repeat;
-        background-size: contain;
-        height: 100%;
+    .decsinc {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        justify-content: center;
     }
 </style>
