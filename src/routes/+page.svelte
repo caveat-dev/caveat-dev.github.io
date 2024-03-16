@@ -16,8 +16,10 @@
 </body>
 
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
     #body {
         background: #232634;
+        font-family: "Urbanist", sans-serif;
     }
     #title {
         text-align: center;
