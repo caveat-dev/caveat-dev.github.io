@@ -13,37 +13,20 @@
         <p>Discord: <a href="https://discord.com/users/824400229645418497" target="_blank">caveat__</a></p>
         <hr>
     </div>
+    <div class="decsinc" style="text-align: center">
+        <a href="https://roxwize.xyz/ext/decsinc/prev.html?id=1"><h1>–</h1></a>
+        <a href="https://roxwize.xyz/site/decsinc.html">
+            <img src="/decsinc_icon.png" alt="decsinc" width="50px"/>
+        </a>
+        <a href="https://roxwize.xyz/ext/decsinc/next.html?id=1"><h1>+</h1></a>
+    </div>
 </body>
 
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
-    #body {
-        background: #232634;
-        font-family: "Urbanist", sans-serif;
-    }
-    #title {
-        text-align: center;
-        color: #c6d0f5;
-    }
-    #content {
-        text-align: center;
-        background: #303446;
-        color: #c6d0f5;
-    }
-    a:link {
-        color: #8caaee;
-        text-decoration: none;
-    }
-    a:visited {
-        color: #8caaee;
-        text-decoration: none;
-    }
-    a:hover {
-        color: #b5bfe2;
-        text-decoration: none;
-    }
-    a:active {
-        color: #949cbb;
-        text-decoration: none;
+    .decsinc > a {
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100%;
     }
 </style>
