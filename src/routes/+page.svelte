@@ -9,7 +9,7 @@
         <p>Codeberg: <a href="https://codeberg.org/caveat" target="_blank">codeberg.org/caveat</a></p>
         <a href="/public_key.txt" target="_blank">Public Key</a>
         <h2>Contact:</h2>
-        <p>Email: <a href="mailto:me@example.com" rel="me" target="_blank">caveat-dev@proton.me</a></p>
+        <p>Email: <a href="cv@caveat.cc" rel="me" target="_blank">cv@caveat.cc</a></p>
         <p>Discord: <a href="https://discord.com/users/824400229645418497" target="_blank">caveat__</a></p>
         <hr>
     </div>
