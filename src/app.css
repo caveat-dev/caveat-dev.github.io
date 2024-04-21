@@ -1,30 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 #body {
-    background: #232634;
+    background: #1e1e2e;
     font-family: "Urbanist", sans-serif;
 }
-#title {
-    text-align: center;
-    color: #c6d0f5;
-}
 #content {
+    background: #313244;
     text-align: center;
-    background: #303446;
-    color: #c6d0f5;
+}
+p {
+    color: #cdd6f4;
+}
+h1 {
+    color: #cdd6f4;
+}
+h2 {
+    color: #bac2de;
+}
+h3 {
+    color: #a6adc8;
 }
 a:link {
-    color: #8caaee;
+    color: #b4befe;
     text-decoration: none;
 }
 a:visited {
-    color: #8caaee;
+    color: #b4befe;
     text-decoration: none;
 }
 a:hover {
-    color: #b5bfe2;
+    color: #ffff;
     text-decoration: none;
 }
 a:active {
-    color: #949cbb;
+    color: #74c7ec;
     text-decoration: none;
 }
