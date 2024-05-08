@@ -5,6 +5,7 @@
 <title>caveat</title>
 <body id="body">
     <div id="content">
+        <hr>
         <h2>Git Me:</h2>
         <p>Github: <a href="https://github.com/caveat-dev" rel="me" target="_blank">github.com/caveat-dev</a></p>
         <p>Codeberg: <a href="https://codeberg.org/caveat" target="_blank">codeberg.org/caveat</a></p>
@@ -23,9 +24,7 @@
         <h1><a href="https://roxwize.xyz/ext/decsinc/next.html?id=1">++</a></h1>
     </div>
     <div>
-        <aside>
-            amateur programming galore!
-        </aside>
+        <aside>amateur programming galore!</aside>
     </div>
 </body>
 

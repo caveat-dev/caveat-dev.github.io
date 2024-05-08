@@ -25,6 +25,12 @@ aside {
     font-size: 17px;
     font-style: italic;
 }
+.cav {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
 a:link {
     color: #b4befe;
     text-decoration: none;
