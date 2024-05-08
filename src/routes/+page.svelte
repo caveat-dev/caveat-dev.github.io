@@ -5,12 +5,6 @@
 <title>caveat</title>
 <body id="body">
     <div id="content">
-        <hr>
-        <ul>
-            <li style="text-align: center">Home</li>
-            <li style="text-align: center">Not Home</li>
-        </ul>
-        <hr>
         <h2>Git Me:</h2>
         <p>Github: <a href="https://github.com/caveat-dev" rel="me" target="_blank">github.com/caveat-dev</a></p>
         <p>Codeberg: <a href="https://codeberg.org/caveat" target="_blank">codeberg.org/caveat</a></p>
@@ -27,6 +21,11 @@
             <img src="{icon_src}" alt="decsinc" width="35px" on:mouseenter={()=>{icon_src = "/alticon.png"}} on:mouseleave={()=>{icon_src = "/favicon.png";}}/>
         </a>
         <h1><a href="https://roxwize.xyz/ext/decsinc/next.html?id=1">++</a></h1>
+    </div>
+    <div>
+        <aside>
+            amateur programming galore!
+        </aside>
     </div>
 </body>
 

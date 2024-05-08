@@ -19,6 +19,12 @@ h2 {
 h3 {
     color: #a6adc8;
 }
+aside {
+    color: #cdd6f4;
+    text-align: center;
+    font-size: 17px;
+    font-style: italic;
+}
 a:link {
     color: #b4befe;
     text-decoration: none;
