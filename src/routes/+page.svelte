@@ -6,6 +6,11 @@
 <body id="body">
     <div id="content">
         <hr>
+        <ul>
+            <li style="text-align: center">Home</li>
+            <li style="text-align: center">Not Home</li>
+        </ul>
+        <hr>
         <h2>Git Me:</h2>
         <p>Github: <a href="https://github.com/caveat-dev" rel="me" target="_blank">github.com/caveat-dev</a></p>
         <p>Codeberg: <a href="https://codeberg.org/caveat" target="_blank">codeberg.org/caveat</a></p>

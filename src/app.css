@@ -35,3 +35,20 @@ a:active {
     color: #74c7ec;
     text-decoration: none;
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #313244;
+}
+li {
+    display: inline;
+    color: #cdd6f4;
+}
+li a {
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
