@@ -4,7 +4,7 @@
     let icon_src = "/favicon.png";
 </script>
 
-<title>caveat</title>
+<title>home | caveat.cc</title>
 <body id="body">
     <div id="content">
         <hr>
