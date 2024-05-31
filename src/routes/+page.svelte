@@ -5,6 +5,9 @@
 </script>
 
 <title>home | caveat.cc</title>
+<header>
+    <link rel="authorization_endpoint" href="https://indieauth.com/auth" style="visibility: hidden"/>
+</header>
 <body id="body">
     <div id="content">
         <hr>
