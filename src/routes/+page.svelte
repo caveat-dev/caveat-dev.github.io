@@ -5,11 +5,9 @@
 </script>
 
 <title>home | caveat.cc</title>
-<header>
-    <link rel="authorization_endpoint" href="https://indieauth.com/auth" style="visibility: hidden"/>
-</header>
 <body id="body">
     <div id="content">
+        <link rel="authorization_endpoint" href="https://indieauth.com/auth" style="visibility: hidden"/>
         <hr>
         <h2>Git Me:</h2>
         <p>Github: <a href="https://github.com/caveat-dev" rel="me" target="_blank">github.com/caveat-dev</a></p>
