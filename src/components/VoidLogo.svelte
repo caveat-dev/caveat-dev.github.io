@@ -3,5 +3,5 @@
 </script>
 
 <a href="https://caveat.cc/void">
-    <img src="{icon_src}" alt="void" width="35px" on:mouseenter={()=>{icon_src = "/altvoid.png"}} on:mouseleave={()=>{icon_src = "/void.png";}}/>
+    <img src="{icon_src}" alt="void" width="35px" on:mouseenter={()=>{icon_src = "/altvoid.png"}} on:mouseleave={()=>{icon_src = "/void.png";}} style="margin-left: 10px; margin-right: 10px"/>
 </a>

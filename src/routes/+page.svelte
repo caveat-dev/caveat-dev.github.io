@@ -1,5 +1,6 @@
 <script>
     import VoidLogo from "../components/VoidLogo.svelte";
+    import NeomapLogo from "../components/NeomapLogo.svelte";
 
     let icon_src = "/favicon.png";
 </script>
@@ -16,6 +17,7 @@
     <p>Discord: <a href="https://discord.com/users/824400229645418497" target="_blank">caveat__</a></p>
     <h2>Other sites:</h2>
     <VoidLogo/>
+    <NeomapLogo/>
     <h2>Misc:</h2>
     <a href="/public_key.txt" target="_blank">Public Key</a>
     <hr>
