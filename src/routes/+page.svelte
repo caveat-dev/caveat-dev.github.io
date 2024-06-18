@@ -4,16 +4,16 @@
 
 <title>home | caveat.cc</title>
 <div id="content">
-    <link href="https://indieauth.com/auth" rel="authorization_endpoint" style="visibility: hidden"/>
     <hr>
+    <link href="https://indieauth.com/auth" rel="authorization_endpoint" style="visibility: hidden"/>
     <h2>Git Me:</h2>
-    <p>Github: <a href="https://github.com/caveat-dev" rel="me" target="_blank">github.com/caveat-dev</a></p>
-    <p>Codeberg: <a href="https://codeberg.org/caveat" target="_blank">codeberg.org/caveat</a></p>
+    <a href="https://git.caveat.cc/caveat" rel="me" target="_blank">git.caveat.cc</a>
     <h2>Contact:</h2>
     <p>Email: <a href="mailto:cv@caveat.cc" rel="me" target="_blank">cv@caveat.cc</a></p>
     <p>Discord: <a href="https://discord.com/users/824400229645418497" target="_blank">caveat__</a></p>
     <h2>Misc:</h2>
     <a href="/public_key.txt" target="_blank">Public Key</a>
+    <br><br>
     <hr>
 </div>
 <div class="decsinc">
