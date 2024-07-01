@@ -7,7 +7,8 @@
     <hr>
     <link href="https://indieauth.com/auth" rel="authorization_endpoint" style="visibility: hidden"/>
     <h2>Git Me:</h2>
-    <a href="https://codeberg.org/caveat" rel="me" target="_blank">codeberg.org/caveat</a>
+    <p><a href="https://codeberg.org/caveat" target="_blank">codeberg.org</a></p>
+    <p><a href="https://github.com/caveat-dev" rel="me" target="_blank">github.com</a></p>
     <h2>Contact:</h2>
     <p>Email: <a href="mailto:cv@caveat.cc" rel="me" target="_blank">cv@caveat.cc</a></p>
     <p>Discord: <a href="https://discord.com/users/824400229645418497" target="_blank">caveat__</a></p>
