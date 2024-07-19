@@ -1,66 +1,126 @@
-@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+    /* https://catppuccin.com/ */
+    --lavender: #b4befe;
+    --surface0: #313244;
+    --base: #1e1e2e;
+    --text: #cdd6f4;
+    --subtext0: #a6adc8;
+    --blue: #89b4fa;
+    --green: #a6e3a1;
+    --red: #f38ba8;
+    --rosewater: #f5e0dc;
+    --pink: #f5c2e7;
+    --teal: #94e2d5;
+    --peach: #fab387;
+}
+
 body {
-    background: #1e1e2e;
-    font-family: "Urbanist", sans-serif;
+    background: var(--base);
+    font-family: monospace;
 }
-#content {
-    background: #313244;
-    text-align: center;
-}
+
 p {
-    color: #cdd6f4;
+    margin: 0 15px 25px;
+    line-height: 25px;
+
+    white-space: break-spaces;
 }
-h1 {
-    color: #cdd6f4;
-}
-h2 {
-    color: #bac2de;
-}
-h3 {
-    color: #a6adc8;
-}
-aside {
-    color: #cdd6f4;
-    text-align: center;
-    font-size: 17px;
-    font-style: italic;
-}
-.cav {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 10%;
-}
-a:link {
-    color: #b4befe;
+
+a, a:link, a:visited, a:hover, a:active {
+    color: var(--blue);
     text-decoration: none;
 }
-a:visited {
-    color: #b4befe;
+
+.terminal-container {
+    /* Technically redundant since the terminal container size gets updated on mount and resize */
+    width: 95vh;
+    height: 95vh;
+
+    padding-top: 5px;
+
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    border: 1px var(--lavender) solid;
+    background: var(--surface0);
+    color: var(--text);
+}
+
+.terminal-input {
+    width: inherit;
+    height: inherit;
+
+    position: absolute;
+    left: -2px;
+    top: -2px;
+
+    background: none;
+    border: none;
     text-decoration: none;
+    outline: none;
+
+    color: var(--surface0);
+
+    opacity: 0;
+
+    ::-moz-selection {
+        color: var(--surface0);
+        background: none;
+        border: none;
+    }
+    ::selection {
+        color: var(--surface0);
+        background: none;
+        border: none;
+    }
 }
-a:hover {
-    color: #ffff;
-    text-decoration: none;
+
+.terminal-history {
+    margin-bottom: 0;
+    word-break: break-all;
+    color: var(--subtext0);
 }
-a:active {
-    color: #74c7ec;
-    text-decoration: none;
+
+.terminal-history-command-success {
+    margin-bottom: 0;
+    word-break: break-all;
+    color: var(--green);
 }
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #313244;
+
+.terminal-history-command-failure {
+    margin-bottom: 0;
+    word-break: break-all;
+    color: var(--red);
 }
-li {
-    display: inline;
-    color: #cdd6f4;
+
+.terminal-fake-input-container {
+    display: flex;
+    margin-left: 11px;
+    margin-top: 0;
 }
-li a {
-    display: block;
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
+
+.terminal-fake-input {
+    margin-left: 7px;
+    margin-right: 0;
+
+    word-break: break-all;
+}
+
+.terminal-prompt {
+    margin-left: 4px;
+    margin-right: 0;
+
+    color: var(--rosewater)
+}
+
+.terminal-prompt-history {
+    color: var(--rosewater)
+}
+
+.terminal-cursor {
+    color: var(--rosewater)
 }
