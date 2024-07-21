@@ -1,6 +1,6 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import {binaries, execute} from "$lib/cash/bin";
+    import {execute} from "$lib/cash/bin";
 
     let terminalContainer: HTMLElement;
     let terminalInput: HTMLElement;
@@ -11,6 +11,9 @@
 
     let typing = false;
     let carrotVisible = true;
+
+    let inputHistory: string[] = [];
+    let inputHistoryIndex = 0;
 
     onMount(() => {
         terminalInput.focus();
@@ -79,6 +82,11 @@
     }
 
     function handleInput() {
+        if (input.trim() === "") {
+            addInputToHistory("");
+            return;
+        }
+
         let result = execute(input, input, historyDisplay.innerHTML);
 
         addInputToHistory(input, result.result);
@@ -89,6 +97,8 @@
             }
         }
 
+        inputHistory.push(input);
+        inputHistoryIndex = inputHistory.length - 1;
         input = "";
     }
 </script>
@@ -112,6 +122,14 @@
             }
             else if (e.key === "Delete") {
                 input = input.substring(0, input.length-1);
+            }
+            else if (e.key === "ArrowUp") {
+                if (inputHistoryIndex > 0) { inputHistoryIndex -= 1; }
+                input = inputHistory[inputHistoryIndex] || "";
+            }
+            else if (e.key === "ArrowDown") {
+                if (inputHistoryIndex <= inputHistory.length-1) { inputHistoryIndex += 1; }
+                input = inputHistory[inputHistoryIndex] || "";
             }
             else {
                 input += terminalInput.innerText;
