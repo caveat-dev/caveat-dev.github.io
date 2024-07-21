@@ -118,7 +118,7 @@ export function execute(str: string, input: string, history: string): ExecutionR
 
     let result: ExecutionResult = {
         result: false,
-        text: `<span style="color: ${Color.Error}">Error:</span> command not found: '${words[0]}'`,
+        text: `<span style="color: ${Color.Error}">Error:</span> command not found: '${words[0]}'\n`,
         historyChanged: false,
         newHistory: null
     };
