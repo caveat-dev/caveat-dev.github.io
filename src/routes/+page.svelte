@@ -98,7 +98,7 @@
         }
 
         inputHistory.push(input);
-        inputHistoryIndex = inputHistory.length - 1;
+        inputHistoryIndex = inputHistory.length;
         input = "";
     }
 </script>

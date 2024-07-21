@@ -1,4 +1,5 @@
-import {Color, parse} from "$lib/cash/highlighting";
+import {parse} from "$lib/cash/highlighting";
+import {env, getVariable, variableToString} from "$lib/cash/env";
 
 const leftAngleBracket = "&lt;";
 const rightAngleBracket = "&gt;";
@@ -7,10 +8,10 @@ export type Binary = {
     aliases: string[],
     description: string,
     usage: string,
-    callback: (args: string[], input: string | null, history: string | null) => ExecutionResult
+    callback: (args: string[], input?: string, history?: string) => ExecutionResult
 }
 
-function createBinary(aliases: string[], description: string, usage: string, callback: (args: string[], input: string | null, history: string | null) => ExecutionResult): Binary {
+function createBinary(aliases: string[], description: string, usage: string, callback: (args: string[], input?: string, history?: string) => ExecutionResult): Binary {
     return {
         aliases: aliases,
         description: description,
@@ -19,7 +20,7 @@ function createBinary(aliases: string[], description: string, usage: string, cal
     }
 }
 
-function createMappedBinary(aliases: string[], description: string, usage: string, callback: (args: string[], input: string | null, history: string | null) => ExecutionResult): [string, Binary] {
+function createMappedBinary(aliases: string[], description: string, usage: string, callback: (args: string[], input?: string, history?: string) => ExecutionResult): [string, Binary] {
     return [aliases[0], createBinary(aliases, description, usage, callback)];
 }
 
@@ -101,7 +102,7 @@ export const binaries: Map<string, Binary> = new Map([
         "accounts",
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("accounts")!); }
-            let toParse = "Email: cv@caveat.cc\nDiscord: caveat__\nGit+Accounts:\nhttps://codeberg.org/caveat (preferred)\nhttps://github.com/caveat-dev"
+            let toParse = "Email: cv@caveat.cc\nDiscord: caveat__\nGit Accounts:\nhttps://codeberg.org/caveat (preferred)\nhttps://github.com/caveat-dev"
             return {
                 result: true,
                 text: parse(toParse),
@@ -125,24 +126,50 @@ export const binaries: Map<string, Binary> = new Map([
             }
         }
     ),
+    createMappedBinary(
+        ["echo"],
+        "Prints the given text.",
+        "bio",
+        (args): ExecutionResult => {
+            let toParse = "";
+            args.forEach((arg) => {
+                if (arg.startsWith("$")) {
+                    toParse = toParse.substring(0, toParse.length-1);
+                    toParse += `${getVariable(arg.substring(1, arg.length))} `;
+                }
+                else {
+                    toParse += `${arg} `;
+                }
+            });
+
+            return {
+                result: true,
+                text: parse(toParse),
+                historyChanged: false,
+                newHistory: null,
+            }
+        }
+    )
 ]);
 
 export function execute(str: string, input: string, history: string): ExecutionResult {
-    let words = str.split(" ");
+    let words = str.replace("\\n", " <br> ").split(" ");
+
+    console.log(words)
 
     let result: ExecutionResult = {
         result: false,
-        text: `<span style="color: ${Color.Error}">Error:</span> command not found: '${words[0]}'\n`,
+        text: `<span style="color: ${env.get("COLORS")!.get("error")!}">Error:</span> command not found: '${words[0]}'\n`,
         historyChanged: false,
         newHistory: null
     };
-    words.forEach((command) => {
-        binaries.forEach((binary) => {
-            if (binary.aliases.includes(command)) {
-                result = binary.callback(words.slice(1, words.length), input, history);
-                return;
-            }
-        });
+    let found = false;
+    binaries.forEach((binary) => {
+        if (binary.aliases.includes(words[0])) {
+            result = binary.callback(words.slice(1, words.length), input, history);
+            found = true;
+            return;
+        }
     });
     return result;
 }
@@ -150,7 +177,7 @@ export function execute(str: string, input: string, history: string): ExecutionR
 function returnInvalidArgs(binary: Binary) {
     return {
         result: false,
-        text: `<span style="color: ${Color.Error}">Error:</span> invalid args provided.\n<span style="color: ${Color.Heading1}">Usage:</span> <span style="color: ${Color.Command}">[${binary.usage.toString().replaceAll(",", ", ")}]</span>\n`,
+        text: `<span style="color: ${env.get("COLORS")!.get("error")}">Error:</span> invalid args provided.\n<span style="color: ${env.get("COLORS")!.get("heading1")}">Usage:</span> <span style="color: ${env.get("COLORS")!.get("command")}">[${binary.usage.toString().replaceAll(",", ", ")}]</span>\n`,
         historyChanged: false,
         newHistory: null,
     }
