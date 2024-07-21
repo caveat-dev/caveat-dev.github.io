@@ -21,7 +21,7 @@ body {
 
 p {
     margin: 0 15px 25px;
-    line-height: 25px;
+    line-height: 20px;
 
     white-space: break-spaces;
 }
@@ -47,6 +47,15 @@ a, a:link, a:visited, a:hover, a:active {
 
     border: 1px var(--lavender) solid;
     background: var(--surface0);
+
+    font-size: x-small;
+    @media only screen and (min-width: 300px) and (min-width: 300px) {
+        font-size: smaller;
+    }
+    @media only screen and (min-width: 500px) and (min-width: 500px) {
+        font-size: medium;
+    }
+
     color: var(--text);
 }
 
@@ -82,7 +91,7 @@ a, a:link, a:visited, a:hover, a:active {
 .terminal-history {
     margin-bottom: 0;
     word-break: break-all;
-    color: var(--subtext0);
+    color: var(--text);
 }
 
 .terminal-history-command-success {
