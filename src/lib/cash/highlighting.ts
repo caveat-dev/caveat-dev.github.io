@@ -22,6 +22,14 @@ export function parse(str: string) {
         str = str.replaceAll(matches[0], `<span style='color: ${colors.get("link")}'>${matches[0]}</span>`);
     });
 
+    // parse colors
+    regex = new RegExp(String.raw`\{#[a-fA-F0-9]{6}\}`, "g");
+    Array.from(str.matchAll(regex), (matches) => {
+        let color = matches[0].substring(1, matches[0].length-1);
+        str = str.replaceAll(matches[0], `<span style='color: ${color}'>${color}</span>`);
+    });
+
+    // TODO: Should have a separate formatting pass
     str = str.replaceAll(/\n|\\n/g, "<br>");
     str = str + "<br>";
 

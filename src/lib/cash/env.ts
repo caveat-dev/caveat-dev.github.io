@@ -19,18 +19,12 @@ export function getVariable(name: string) {
 
     let str = "";
     variable.forEach((value, key) => {
-        str += `${key}: ${value}\n`
-    });
-    return str.substring(0, str.length-1);
-}
-
-export function variableToString(name: string) {
-    let variable = env.get(name);
-    if (!variable) { return ""; }
-
-    let str = "";
-    variable.forEach((value, key) => {
-        str += `${key}: ${value}\n`;
+        if (name === "COLORS") {
+            str += `${key}: {${value}}\n`
+        }
+        else {
+            str += `${key}: ${value}\n`
+        }
     });
     return str.substring(0, str.length-1);
 }

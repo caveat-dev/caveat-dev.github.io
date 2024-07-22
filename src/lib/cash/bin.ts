@@ -1,5 +1,5 @@
 import {parse} from "$lib/cash/highlighting";
-import {env, getVariable, variableToString} from "$lib/cash/env";
+import {env, getVariable} from "$lib/cash/env";
 
 const leftAngleBracket = "&lt;";
 const rightAngleBracket = "&gt;";
@@ -154,8 +154,6 @@ export const binaries: Map<string, Binary> = new Map([
 
 export function execute(str: string, input: string, history: string): ExecutionResult {
     let words = str.replace("\\n", " <br> ").split(" ");
-
-    console.log(words)
 
     let result: ExecutionResult = {
         result: false,
