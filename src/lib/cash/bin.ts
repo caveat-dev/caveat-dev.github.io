@@ -34,7 +34,7 @@ export type ExecutionResult = {
 export const binaries: Map<string, Binary> = new Map([
     createMappedBinary(
         ["welcome"],
-        "Displays the welcome message.",
+        "Prints the welcome message.",
         "welcome",
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("welcome")!); }
@@ -49,7 +49,7 @@ export const binaries: Map<string, Binary> = new Map([
     ),
     createMappedBinary(
         ["help", "h"],
-        "Displays available commands.",
+        "Prints available commands.",
         `help, help ${leftAngleBracket}#page${rightAngleBracket}`,
         (args) => {
             let page = 1;
@@ -98,7 +98,7 @@ export const binaries: Map<string, Binary> = new Map([
     ),
     createMappedBinary(
         ["accounts"],
-        "Displays Caveat's git pages, socials, and other accounts online.",
+        "Prints Caveat's git pages, socials, and other accounts online.",
         "accounts",
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("accounts")!); }
@@ -113,7 +113,7 @@ export const binaries: Map<string, Binary> = new Map([
     ),
     createMappedBinary(
         ["bio"],
-        "Displays Caveat's bio.",
+        "Prints Caveat's bio.",
         "bio",
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("bio")!); }
@@ -128,8 +128,8 @@ export const binaries: Map<string, Binary> = new Map([
     ),
     createMappedBinary(
         ["echo"],
-        "Prints the given text.",
-        "bio",
+        "Prints the given text and/or environment variables.",
+        `echo ${leftAngleBracket}text${rightAngleBracket}`,
         (args): ExecutionResult => {
             let toParse = "";
             args.forEach((arg) => {
@@ -141,10 +141,59 @@ export const binaries: Map<string, Binary> = new Map([
                     toParse += `${arg} `;
                 }
             });
+            return {
+                result: true,
+                text: parse(toParse),
+                historyChanged: false,
+                newHistory: null,
+            }
+        }
+    ),
+    createMappedBinary(
+        ["print-env", "printenv"],
+        "Prints the names of the current environment variables.",
+        "print-env",
+        (args): ExecutionResult => {
+            if (args.length !== 0) { return returnInvalidArgs(binaries.get("print-env")!) }
+
+            let envArray = Array.from(env);
+            let toParse = "";
+            envArray.forEach((entry) => {
+                toParse += `${entry[0]}, `
+            })
+            toParse = toParse.substring(0, toParse.length-2);
 
             return {
                 result: true,
                 text: parse(toParse),
+                historyChanged: false,
+                newHistory: null,
+            }
+        }
+    ),
+    createMappedBinary(
+        ["print-var", "printvar"],
+        `Prints the values of the given environment variable. Functionally identical to '$ECHO ${leftAngleBracket}var${rightAngleBracket}'`,
+        `print-var ${leftAngleBracket}var${rightAngleBracket}`,
+        (args): ExecutionResult => {
+            if (args.length !== 1) {
+                return returnInvalidArgs(binaries.get("print-var")!);
+            }
+
+            args[0] = args[0].replace("$", "");
+            let variable = env.get(args[0]);
+            if (!variable) {
+                return {
+                    result: false,
+                    text: `<span style='color: ${env.get("COLORS")!.get("error")!}'>Error:</span> Unknown environment variable '${args[0]}'.\n`,
+                    historyChanged: false,
+                    newHistory: null,
+                }
+            }
+
+            return {
+                result: true,
+                text: parse(getVariable(args[0])),
                 historyChanged: false,
                 newHistory: null,
             }
