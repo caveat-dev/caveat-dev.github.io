@@ -38,7 +38,7 @@ export const binaries: Map<string, Binary> = new Map([
         "welcome",
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("welcome")!); }
-            let welcomeMessage = `Welcome to https://caveat.cc!\nType [${binaries.get("help")!.aliases}] for a list of commands.`;
+            let welcomeMessage = `Welcome to CAVM 1.0.0.\nType [${binaries.get("help")!.aliases}] for a list of commands.`;
             return {
                 result: true,
                 text: parse(welcomeMessage),
