@@ -126,6 +126,13 @@ a, a:link, a:visited, a:hover, a:active {
     color: var(--rosewater)
 }
 
+.terminal-prompt-alt {
+    margin-left: 4px;
+    margin-right: 0;
+
+    color: var(--peach)
+}
+
 .terminal-prompt-history {
     color: var(--rosewater)
 }
