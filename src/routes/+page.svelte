@@ -109,7 +109,12 @@
 
 <div bind:this={terminalContainer} class="terminal-container">
     <input bind:this={terminalInput} bind:value={input} class="terminal-input" id="terminal-input" type="text"
-        on:keydown={() => {
+        on:keydown={(e) => {
+            console.log(e);
+            if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+                e.preventDefault();
+            }
+
             typing = true;
         }}
 
