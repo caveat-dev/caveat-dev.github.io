@@ -69,7 +69,7 @@
     }
 
     function addInputToHistory(s: string, success = true) {
-        historyDisplay.innerHTML += '<span class="terminal-prompt-history">></span> ';
+        historyDisplay.innerHTML += '<span class="terminal-prompt-history">> </span>';
         if (success) { historyDisplay.innerHTML += `<span class="terminal-history-command-success"">${s}</span>`; }
         else { historyDisplay.innerHTML += `<span class="terminal-history-command-failure"">${s}</span>`; }
         historyDisplay.innerHTML += "<br>"
