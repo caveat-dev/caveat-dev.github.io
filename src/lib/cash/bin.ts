@@ -260,7 +260,7 @@ export const binaries: Map<string, Binary> = new Map([
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("pwd")!) }
             return {
                 result: true,
-                text: getWd(),
+                text: `${getWd()}\n`,
                 historyChanged: false,
                 newHistory: null,
             }
