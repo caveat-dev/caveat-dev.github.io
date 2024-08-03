@@ -1,6 +1,7 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import {execute} from "$lib/cash/bin";
+    import { fsInit, getWd } from "$lib/cash/fs";
 
     let terminalContainer: HTMLElement;
     let terminalInput: HTMLElement;
@@ -14,6 +15,8 @@
 
     let inputHistory: string[] = [];
     let inputHistoryIndex = 0;
+
+    let wd: string = "/";
 
     onMount(() => {
         terminalInput.focus();
@@ -34,6 +37,9 @@
         }, 1);
 
         addToHistory(execute("welcome", input, historyDisplay.innerHTML).text || "");
+
+        fsInit();
+        wd = getWd();
     });
 
     function resizeTerminal() {
@@ -69,7 +75,7 @@
     }
 
     function addInputToHistory(s: string, success = true) {
-        historyDisplay.innerHTML += '<span class="terminal-prompt-history">> </span>';
+        historyDisplay.innerHTML += `<span class="terminal-prompt-history">${wd} ~> </span>`;
         if (success) { historyDisplay.innerHTML += `<span class="terminal-history-command-success"">${s}</span>`; }
         else { historyDisplay.innerHTML += `<span class="terminal-history-command-failure"">${s}</span>`; }
         historyDisplay.innerHTML += "<br>"
@@ -100,6 +106,7 @@
         inputHistory.push(input);
         inputHistoryIndex = inputHistory.length;
         input = "";
+        wd = getWd();
     }
 </script>
 
@@ -110,7 +117,6 @@
 <div bind:this={terminalContainer} class="terminal-container">
     <input bind:this={terminalInput} bind:value={input} class="terminal-input" id="terminal-input" type="text"
         on:keydown={(e) => {
-            console.log(e);
             if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
                 e.preventDefault();
             }
@@ -147,7 +153,7 @@
     <p bind:this={historyDisplay} class="terminal-history"></p>
 
     <div class="terminal-fake-input-container">
-        <p class="terminal-prompt">></p>
+        <p class="terminal-prompt">{wd} ~></p>
         <p bind:this={inputDisplay} class="terminal-fake-input"><span class="terminal-cursor">▌</span></p>
     </div>
 </div>

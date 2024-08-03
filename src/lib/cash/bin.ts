@@ -1,5 +1,6 @@
 import {parse} from "$lib/cash/highlighting";
 import {env, getVariable} from "$lib/cash/env";
+import { changeWd, getWd, listDir } from "./fs";
 
 const leftAngleBracket = "&lt;";
 const rightAngleBracket = "&gt;";
@@ -38,7 +39,7 @@ export const binaries: Map<string, Binary> = new Map([
         "welcome",
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("welcome")!); }
-            let welcomeMessage = `Welcome to CAVM 1.0.0.\nType [${binaries.get("help")!.aliases}] for a list of commands.`;
+            const welcomeMessage = `Welcome to CAVM 1.0.0.\nType [${binaries.get("help")!.aliases}] for a list of commands.`;
             return {
                 result: true,
                 text: parse(welcomeMessage),
@@ -65,10 +66,10 @@ export const binaries: Map<string, Binary> = new Map([
                 page = Math.min(Math.ceil(binaries.size / 3), page)
             }
 
-            let lowerBound = (page * 3) - 3;
-            let upperBound = Math.min(lowerBound + 2, binaries.size-1);
+            const lowerBound = (page * 3) - 3;
+            const upperBound = Math.min(lowerBound + 2, binaries.size-1);
             let toParse = "";
-            let binariesArr = Array.from(binaries);
+            const binariesArr = Array.from(binaries);
             for (let i = lowerBound; i <= upperBound; i++) {
                 toParse += `[${binariesArr[i][1].aliases}]\nDescription: ${binariesArr[i][1].description}\nUsage: ${binariesArr[i][1].usage}\n`;
             }
@@ -102,7 +103,7 @@ export const binaries: Map<string, Binary> = new Map([
         "accounts",
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("accounts")!); }
-            let toParse = "Email: cv@caveat.cc\nDiscord: caveat__\nGit Accounts:\nhttps://codeberg.org/caveat (preferred)\nhttps://github.com/caveat-dev"
+            const toParse = "Email: cv@caveat.cc\nDiscord: caveat__\nGit Accounts:\nhttps://codeberg.org/caveat (preferred)\nhttps://github.com/caveat-dev"
             return {
                 result: true,
                 text: parse(toParse),
@@ -117,7 +118,7 @@ export const binaries: Map<string, Binary> = new Map([
         "bio",
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("bio")!); }
-            let toParse = "Caveat (often stylized as caveat, full name Caveat Emptor) is an amateur developer and FOSS enthusiast from North America.\nThey enjoy developing programs in Rust and Haskell, but begrudgingly use Javascript the most.\nWatch them develop open-source software that nobody uses!"
+            const toParse = "Caveat (often stylized as caveat, full name Caveat Emptor) is an amateur developer and FOSS enthusiast from North America.\nThey enjoy developing programs in Rust and Haskell, but begrudgingly use Javascript the most.\nWatch them develop open-source software that nobody uses!"
             return {
                 result: true,
                 text: parse(toParse),
@@ -156,7 +157,7 @@ export const binaries: Map<string, Binary> = new Map([
         (args): ExecutionResult => {
             if (args.length !== 0) { return returnInvalidArgs(binaries.get("print-env")!) }
 
-            let envArray = Array.from(env);
+            const envArray = Array.from(env);
             let toParse = "";
             envArray.forEach((entry) => {
                 toParse += `${entry[0]}, `
@@ -181,7 +182,7 @@ export const binaries: Map<string, Binary> = new Map([
             }
 
             args[0] = args[0].replace("$", "");
-            let variable = env.get(args[0]);
+            const variable = env.get(args[0]);
             if (!variable) {
                 return {
                     result: false,
@@ -198,11 +199,77 @@ export const binaries: Map<string, Binary> = new Map([
                 newHistory: null,
             }
         }
-    )
+    ),
+    createMappedBinary(
+        ["ls"],
+        "Lists the given or current directory.",
+        `ls ${leftAngleBracket}path${rightAngleBracket}`,
+        (args): ExecutionResult => {
+            let toParse = "";
+            if (args.length === 0) {
+                toParse += listDir("");
+            }
+            else if (args.length === 1) {
+                toParse += listDir(args[0]);
+            }
+            else {
+                return returnInvalidArgs(binaries.get("ls")!);
+            }
+
+            return {
+                result:  true,
+                text: toParse,
+                historyChanged: false,
+                newHistory: null,
+            };
+        }
+    ),
+    createMappedBinary(
+        ["cd"],
+        "Changes the working directory.",
+        `cd ${leftAngleBracket}path${rightAngleBracket}`,
+        (args): ExecutionResult => {
+            let result;
+            if (args.length === 0) {
+                result = changeWd("");
+            }
+            else if (args.length !== 1) {
+                return returnInvalidArgs(binaries.get("cd")!);
+            }
+            else {
+                result = changeWd(args[0]);
+            }
+            
+            let text = "";
+            if (!result) {
+                text = `<span style="color: ${env.get("COLORS")!.get("error")!}">Error:</span> invalid path '${args[0]}'\n`;
+            }
+            return {
+                result: result,
+                text: text,
+                historyChanged: false,
+                newHistory: null
+            };
+        }
+    ),
+    createMappedBinary(
+        ["pwd"],
+        "Prints the working directory.",
+        "pwd",
+        (args): ExecutionResult => {
+            if (args.length !== 0) { return returnInvalidArgs(binaries.get("pwd")!) }
+            return {
+                result: true,
+                text: getWd(),
+                historyChanged: false,
+                newHistory: null,
+            }
+        }
+    ),
 ]);
 
 export function execute(str: string, input: string, history: string): ExecutionResult {
-    let words = str.replace("\\n", " <br> ").split(" ");
+    const words = str.replace("\\n", " <br> ").trim().split(" ");
 
     let result: ExecutionResult = {
         result: false,
@@ -210,11 +277,9 @@ export function execute(str: string, input: string, history: string): ExecutionR
         historyChanged: false,
         newHistory: null
     };
-    let found = false;
     binaries.forEach((binary) => {
         if (binary.aliases.includes(words[0])) {
             result = binary.callback(words.slice(1, words.length), input, history);
-            found = true;
             return;
         }
     });
