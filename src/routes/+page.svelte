@@ -113,6 +113,7 @@
 <link href="https://indieauth.com/auth" rel="authorization_endpoint" style="visibility: hidden">
 <a href="https://github.com/caveat-dev" rel="me" target="_blank" style="visibility: hidden;">github.com</a>
 <a href="mailto:cv@caveat.cc" rel="me" target="_blank" style="visibility: hidden">cv@caveat.cc</a>
+<a href="https://discord.com/users/824400229645418497" rel="me" target="_blank" style="visibility: hidden">caveat__</a>
 
 <div bind:this={terminalContainer} class="terminal-container">
     <input bind:this={terminalInput} bind:value={input} class="terminal-input" id="terminal-input" type="text"
